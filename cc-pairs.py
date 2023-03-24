@@ -26,13 +26,8 @@ def shuffle(mapped_pairs):
     return shuffled
 
 
-def reduce(shuffled):
-    reduced = []
-    for pair, counts in shuffled:
-        reduced.append((pair, sum(counts)))
-    return reduced
-
-
+def reduce(pair, counts):
+    return pair, sum(counts)
 
 
 file = open("./products_new.txt", encoding="utf8")
@@ -45,7 +40,10 @@ for line in file:
 
 shuffled = shuffle(mapped_pairs)
 
-reduced = reduce(shuffled)
+reduced = []
+
+for pair, counts in shuffled:
+    reduced.append(reduce(pair, counts))
 
 print(reduced)
 
